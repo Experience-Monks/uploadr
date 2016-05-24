@@ -1,6 +1,6 @@
 {
   "name": "uploadr",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "tiny CLI tool to upload contents to a server",
   "main": "./lib/index.js",
   "license": "MIT",
