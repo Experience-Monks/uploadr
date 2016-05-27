@@ -14,6 +14,7 @@
     "chalk": "^1.1.3",
     "defined": "^1.0.0",
     "fs-extra": "^0.30.0",
+    "inquirer": "^1.0.2",
     "micromatch": "^2.3.8",
     "minimist": "^1.2.0",
     "object-assign": "^4.1.0",
@@ -41,6 +42,7 @@
     "url": "https://github.com/Jam3/uploadr/issues"
   },
   "bin": {
-    "uploadr": "./bin/index.js"
+    "uploadr": "./bin/index.js",
+    "uploadr-env": "./bin/env.js"
   }
 }
