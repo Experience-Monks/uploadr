@@ -5,7 +5,7 @@ var uploadr = require('../');
 var log = require('../lib/log');
 
 uploadr(argv).on('error', function (err) {
-  if (err.type === 'NO_ENV_FILE') {
+  if (err.code === 'NO_ENV_FILE') {
     log.error('No ' + chalk.bold('.env') + ' file found in current directory\n' +
       'A JSON file with ' + chalk.bold('{ username, password }') +
       ' required for FTP authentication.');
