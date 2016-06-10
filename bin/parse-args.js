@@ -8,7 +8,11 @@ module.exports = function () {
       host: 'h',
       port: 'P',
       username: 'u',
-      password: 'p'
+      password: 'p',
+      incremental: 'I',
+      dryRun: 'dry-run',
+      verbose: 'V',
+      version: 'v'
     },
     default: {
       gitignore: true
