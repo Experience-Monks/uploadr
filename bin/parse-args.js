@@ -1,4 +1,5 @@
 var minimist = require('minimist');
+
 module.exports = function () {
   return minimist(process.argv.slice(2), {
     alias: {
@@ -9,15 +10,16 @@ module.exports = function () {
       port: 'P',
       username: 'u',
       password: 'p',
-      incremental: 'I',
+      only: 'o',
       dryRun: 'dry-run',
-      verbose: 'V',
-      version: 'v'
+      version: 'v',
+      save: 'S',
+      remotePlatform: 'remote-platform'
     },
     default: {
-      gitignore: true
+      save: true
     },
-    string: [ 'src', 'dest', 'ignore', 'password', 'username', 'host' ],
-    boolean: [ 'once', 'gitignore' ] // for uploadr-env
+    string: [ 'src', 'dest', 'ignore', 'password', 'username', 'host', 'remotePlatform' ],
+    boolean: [ 'save', 'prompt', 'dryRun' ]
   });
 };
