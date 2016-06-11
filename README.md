@@ -28,16 +28,7 @@ Usually you need a username and password to connect via SFTP. This tool searches
 }
 ```
 
-## 
-
-For example, your scripts might look like this:
-
-```json
-{
-  "upload": "uploadr --host foobar.com --src public/ --dest /home/public_html/",
-  "env": "uploadr-env"
-}
-```
+## TODO !
 
 ```sh
 uploadr [opts]

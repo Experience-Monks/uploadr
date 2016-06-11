@@ -44,7 +44,6 @@
     "url": "https://github.com/Jam3/uploadr/issues"
   },
   "bin": {
-    "uploadr": "./bin/index.js",
-    "uploadr-env": "./bin/env.js"
+    "uploadr": "./bin/index.js"
   }
 }
