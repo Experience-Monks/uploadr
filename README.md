@@ -1,25 +1,57 @@
 # uploadr
 
-[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+A command-line tool which copies a folder's contents to a server via SFTP. Inspired by [surge.sh](https://surge.sh/).
 
-A command-line tool which copies a folder's contents to a server via SFTP. Some features:
+Features:
 
-- Allows ignore and other pattern matching
-- Displays a progress bar for total bytes transferred
-- Provides a smooth UX for creating `.env` files (username / password entry)
+- Progress bar shows bytes transferred while uploading 
+- Pattern matching to isolate/ignore files while uploading
+- Prompts for username/password if necessary
+- Can persist credentials to a git-ignored `.env` file
 - Provides clear logging and handles common user errors
 
-## Install
+###### *Note: This tool is experimental and mostly used internally.*
 
-This is best installed as a local devDependency, and set up in a script tag in your project's `package.json`.
+## Docs
+
+- [Quick-Start](#quick-start)
+- [Credentials with `.env` file](#credentials-with-env-file)
+- [CLI Usage](#cli-usage)
+- [Persistence with `--save`](#persistence-with---save)
+- [Ignoring Files](#ignoring-files)
+- [Uploading Specific Files](#uploading-specific-files)
+
+## Quick-Start
+
+It's recommended you install and use this tool as a local dependency:
 
 ```sh
 npm i uploadr --save-dev
 ```
 
-## `.env` config
+Now, you can add a script to your npm scripts in `package.json`:
 
-Usually you need a username and password to connect via SFTP. This tool searches for a `.env` file in your current working directory, and you can `.gitignore` this to ensure that the credentials are not public. The file is JSON and supports comments.
+```json
+{
+  "scripts": {
+    "deploy": "uploadr --host foo.com --source app/ --dest /home/public_html/"
+  }
+}
+```
+
+You can run the script with the following:
+
+```sh
+npm run deploy
+```
+
+This will prompt for SFTP credentials, then recursively copy the contents of your local `app/` folder into the remote `/home/public_html/` folder.
+
+## Credentials with `.env` file
+
+You can avoid entering your username/password each time by adding a `.env` file to your working directory.
+
+It should be JSON, optionally with comments.
 
 ```json
 {
@@ -28,9 +60,13 @@ Usually you need a username and password to connect via SFTP. This tool searches
 }
 ```
 
-## TODO !
+:bulb: *Don't forget to gitignore this file!*
 
-```sh
+## CLI Usage
+
+Full details:
+
+```
 uploadr [opts]
 
 Options
@@ -42,9 +78,62 @@ Options
   --port, -p       port to connect (default 22)
   --ignore, -i     pattern(s) to ignore in the upload queue
   --only, -o       pattern(s) to isolate and only upload for this run
-  --save, -S       saves .env to cwd and updates .gitignore
-  --prompt         always shows user/password prompt
+  --save, -S       writes an .env file to cwd and gitignore if necessary
+  --no-prompt      do not prompt – only read auth data from .env file
 ```
+
+## Persistence with `--save`
+
+You can use the `--save` option if you want to persist the username/password after prompt. It will write a new `.env` file in your working directory, and add it to a `.gitignore` file in the same directory.
+
+```sh
+uploadr --save --host foo.com --source app/ --dest /home/public_html/
+```
+
+This is handy for streamlining the development experience on small teams.
+
+## Ignoring Files
+
+By default, we ignore the same patterns as [surge-ignore](https://www.npmjs.com/package/surge-ignore).
+
+You can ignore more files with the `--ignore` flag and with a `.ftpignore` file. This expects the same pattern matching as a typical `.gitignore` file. Example:
+
+```sh
+uploadr --ignore *.mp4 -h foo.com -s app/ -d /home/public_html
+```
+
+Here is an example `.ftpignore` file which un-ignores (allows) something in `node_modules/`.
+
+```txt
+*.psd
+some/file/to/ignore.txt
+app/sensitive.txt
+!node_modules/foo/
+```
+
+## Uploading Specific Files
+
+You can use the `--only` flag if you just want to upload specific file globs.
+
+The following is an example of a `deploy-js` script, which only uploads JavaScript files:
+
+```json
+{
+  "scripts": {
+    "deploy": "uploadr -h foo.com -s app -d /home/public_html/",
+    "deploy-js": "npm run deploy -- --only *.js"
+  }
+}
+```
+
+## Roadmap
+
+There are no real plans for the future of this tool. However, the following may be explored at some point:
+
+- Optional rsync for faster/incremental uploads (for unix systems)
+- regular FTP support
+- improved Windows support
+- integration with tools like 1password or LastPass
 
 ## License
 

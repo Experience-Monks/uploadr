@@ -17,7 +17,7 @@ module.exports = function () {
       remotePlatform: 'remote-platform'
     },
     default: {
-      save: true
+      prompt: true
     },
     string: [ 'src', 'dest', 'ignore', 'password', 'username', 'host', 'remotePlatform' ],
     boolean: [ 'save', 'prompt', 'dryRun' ]
