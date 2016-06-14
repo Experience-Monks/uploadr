@@ -2,6 +2,8 @@
 
 A command-line tool which copies a folder's contents to a server via SFTP. Inspired by [surge.sh](https://surge.sh/).
 
+<img src="http://i.imgur.com/oAfBdz5.gif" width="400" />
+
 Features:
 
 - Progress bar shows bytes transferred while uploading 
@@ -130,6 +132,7 @@ The following is an example of a `deploy-js` script, which only uploads JavaScri
 
 There are no real plans for the future of this tool. However, the following may be explored at some point:
 
+- programmatic API and more modularization
 - Optional rsync for faster/incremental uploads (for unix systems)
 - regular FTP support
 - improved Windows support
