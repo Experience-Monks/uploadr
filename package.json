@@ -17,6 +17,7 @@
     "fs-extra": "^0.30.0",
     "ignore": "^3.1.2",
     "inquirer": "1.0.2",
+    "loud-rejection": "^1.4.1",
     "minimist": "^1.2.0",
     "object-assign": "^4.1.0",
     "parents": "^1.0.1",

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+require('loud-rejection')();
 var chalk = require('chalk');
 var argv = require('./parse-args')();
 var uploadr = require('../');
