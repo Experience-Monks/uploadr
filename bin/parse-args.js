@@ -10,6 +10,7 @@ module.exports = function () {
       port: 'P',
       username: 'u',
       password: 'p',
+      key: 'k',
       only: 'o',
       dryRun: 'dry-run',
       version: 'v',
@@ -19,7 +20,7 @@ module.exports = function () {
     default: {
       prompt: true
     },
-    string: [ 'src', 'dest', 'ignore', 'password', 'username', 'host', 'remotePlatform' ],
+    string: [ 'src', 'dest', 'ignore', 'password', 'username', 'host', 'remotePlatform', 'key' ],
     boolean: [ 'save', 'prompt', 'dryRun' ]
   });
 };

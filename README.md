@@ -77,6 +77,7 @@ Options
   --host, -h       host for login
   --username, -u   username for login (default 'anonymous')
   --password, -p   password for login (default empty string)
+  --key, -k        path to an SSH private key for login
   --port, -p       port to connect (default 22)
   --ignore, -i     pattern(s) to ignore in the upload queue
   --only, -o       pattern(s) to isolate and only upload for this run
